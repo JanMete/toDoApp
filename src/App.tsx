@@ -13,6 +13,7 @@ const StyledContainerDiv = styled.div`
   max-width: 800px;
   @media screen and (max-width: 600px) {
     max-width: 100vw;
+    margin: 0 10px;
   }
 `;
 
