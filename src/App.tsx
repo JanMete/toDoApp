@@ -11,6 +11,11 @@ const StyledContainerDiv = styled.div`
   padding: 32px 24px;
   border-radius: 12px;
   max-width: 800px;
+
+  @media screen and (max-width: 600px) {
+    max-width: 100vw;
+    margin: 20px 0;
+  }
 `;
 
 const StyledHeader = styled.header`
