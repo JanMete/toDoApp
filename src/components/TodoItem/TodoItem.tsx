@@ -18,7 +18,6 @@ const StyledLi = styled.li`
 `;
 
 const StyledSpan = styled.span`
-  /* width: 100%; */
   text-decoration: ${({ $done }) => ($done ? 'line-through' : '')};
 `;
 
