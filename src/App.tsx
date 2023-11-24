@@ -37,7 +37,9 @@ const StyledButton = styled.button`
 
 function App() {
   const [isFormShowen, setIsFormShowen] = useState(false);
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState([
+    { name: 'Test', done: false, id: Math.random() },
+  ]);
 
   function addItem(newTodoName) {
     setTodos((prevTodos) => [
