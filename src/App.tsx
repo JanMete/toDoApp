@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import styled from 'styled-components';
 import { Form } from './components/Form/Form';
@@ -35,11 +35,28 @@ const StyledButton = styled.button`
   cursor: pointer;
 `;
 
+type Todo = {
+  name: string;
+  done: boolean;
+  id: number;
+};
+
 function App() {
   const [isFormShowen, setIsFormShowen] = useState(false);
-  const [todos, setTodos] = useState([
-    { name: 'Test', done: false, id: Math.random() },
-  ]);
+  const [todos, setTodos] = useState<Todo[]>([]);
+
+  useEffect(() => {
+    const storedTodos = localStorage.getItem('todos');
+    if (storedTodos) {
+      const parsedTodos = JSON.parse(storedTodos);
+      if (parsedTodos.length > 0) {
+        setTodos(parsedTodos);
+      }
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
 
   function addItem(newTodoName: string) {
     setTodos((prevTodos) => [
