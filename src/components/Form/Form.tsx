@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { Button } from '../Button/Button';
+import { FormProps } from '../../Interfaces/interfaces';
 
 const StyledForm = styled.form`
   display: flex;
@@ -15,12 +16,16 @@ const StyledInput = styled.input`
   border-radius: 4px;
 `;
 
-export function Form({ onFormSubmit }) {
+export function Form({ onFormSubmit }: FormProps) {
   const [inputValue, setInputValue] = useState('');
   return (
     <StyledForm
       onSubmit={(e) => {
         e.preventDefault();
+        if (inputValue.trim() === '') {
+          return;
+        }
+
         onFormSubmit(inputValue);
       }}
     >

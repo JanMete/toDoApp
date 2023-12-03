@@ -1,4 +1,4 @@
-export function getSubHeading(numberOfTasks) {
+export function getSubHeading(numberOfTasks: number) {
   switch (true) {
     case numberOfTasks > 4:
       return `${numberOfTasks} zadań`;

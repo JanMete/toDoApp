@@ -3,7 +3,7 @@ import './App.css';
 import styled from 'styled-components';
 import { Form } from './components/Form/Form';
 import { TodoItem } from './components/TodoItem/TodoItem';
-import { getSubHeading } from './utils/getSubHeating.js';
+import { getSubHeading } from './utils/getSubHeating';
 
 const StyledContainerDiv = styled.div`
   display: inline-block;
@@ -41,7 +41,7 @@ function App() {
     { name: 'Test', done: false, id: Math.random() },
   ]);
 
-  function addItem(newTodoName) {
+  function addItem(newTodoName: string) {
     setTodos((prevTodos) => [
       ...prevTodos,
       { name: newTodoName, done: false, id: Math.random() },
@@ -49,11 +49,11 @@ function App() {
     setIsFormShowen(false);
   }
 
-  function deleteItem(id) {
+  function deleteItem(id: number) {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
   }
 
-  function finishItem(id) {
+  function finishItem(id: number) {
     setTodos((prevTodos) =>
       prevTodos.map((todo) => {
         if (todo.id !== id) {
@@ -79,7 +79,7 @@ function App() {
         )}
       </StyledHeader>
       {isFormShowen && (
-        <Form onFormSubmit={(newTodoName) => addItem(newTodoName)} />
+        <Form onFormSubmit={(newTodoName: string) => addItem(newTodoName)} />
       )}
       <ul>
         {todos.map(({ id, name, done }) => (

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ButtonProps } from '../../Interfaces/interfaces';
 
 const StyledButton = styled.button`
   color: var(--color-main);
@@ -16,6 +17,6 @@ const StyledButton = styled.button`
   }
 `;
 
-export function Button({ children, onClick }) {
+export function Button({ children, onClick }: ButtonProps) {
   return <StyledButton onClick={onClick}>{children}</StyledButton>;
 }

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Button } from '../Button/Button';
+import { TodoItemProps } from '../../Interfaces/interfaces';
 
 const StyledLi = styled.li`
   list-style-type: none;
@@ -17,7 +18,7 @@ const StyledLi = styled.li`
   }
 `;
 
-const StyledSpan = styled.span`
+const StyledSpan = styled.span<{ $done: boolean }>`
   text-decoration: ${({ $done }) => ($done ? 'line-through' : '')};
 `;
 
@@ -30,7 +31,7 @@ export function TodoItem({
   done,
   onDeleteButtonClick,
   onDoneButtonClick,
-}) {
+}: TodoItemProps) {
   return (
     <StyledLi>
       <StyledSpan $done={done}>{name}</StyledSpan>
