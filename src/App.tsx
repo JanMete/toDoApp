@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import './App.css';
 import styled from 'styled-components';
 import { Form } from './components/Form/Form';
 import { TodoItem } from './components/TodoItem/TodoItem';

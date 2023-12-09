@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Button } from '../Button/Button';
 import { FormProps } from '../../Interfaces/interfaces';
@@ -15,26 +15,54 @@ const StyledInput = styled.input`
   border: solid 1px currentColor;
   border-radius: 4px;
 `;
+const StyledDiv = styled.div`
+  margin-top: 1rem;
+  color: red;
+`;
 
 export function Form({ onFormSubmit }: FormProps) {
   const [inputValue, setInputValue] = useState('');
-  return (
-    <StyledForm
-      onSubmit={(e) => {
-        e.preventDefault();
-        if (inputValue.trim() === '') {
-          return;
-        }
+  const [showError, setShowError] = useState(false);
 
-        onFormSubmit(inputValue);
-      }}
-    >
-      <StyledInput
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        type='text'
-      />
-      <Button>Dodaj</Button>
-    </StyledForm>
+  useEffect(() => {
+    let timeoutId: number | undefined;
+
+    if (showError) {
+      timeoutId = setTimeout(() => {
+        setShowError(false);
+      }, 2000);
+    }
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [showError]);
+
+  return (
+    <>
+      <StyledForm
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (inputValue.trim() === '') {
+            setShowError(true);
+            return;
+          }
+
+          onFormSubmit(inputValue);
+        }}
+      >
+        <StyledInput
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          type='text'
+        />
+        <Button>Dodaj</Button>
+      </StyledForm>
+      {showError && (
+        <StyledDiv className=''>
+          <p>Zadanie nie może być puste!</p>
+        </StyledDiv>
+      )}
+    </>
   );
 }
