@@ -25,7 +25,7 @@ export function Form({ onFormSubmit }: FormProps) {
   const [showError, setShowError] = useState(false);
 
   useEffect(() => {
-    let timeoutId: number | undefined;
+    let timeoutId: NodeJS.Timeout | undefined;
 
     if (showError) {
       timeoutId = setTimeout(() => {
@@ -59,7 +59,7 @@ export function Form({ onFormSubmit }: FormProps) {
         <Button>Dodaj</Button>
       </StyledForm>
       {showError && (
-        <StyledDiv className=''>
+        <StyledDiv data-test='errorDiv'>
           <p>Zadanie nie może być puste!</p>
         </StyledDiv>
       )}
